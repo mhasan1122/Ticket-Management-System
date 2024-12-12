@@ -1,6 +1,6 @@
-# Tricket
+# Ticket-Management-System
 
-Tricket is a web-based application designed to provide a seamless experience for users. It includes a backend server and a MongoDB database to manage user data and transactions efficiently.
+Ticket is a web-based application designed to provide a seamless experience for users. It includes a backend server and a MongoDB database to manage user data and transactions efficiently.
 
 ---
 
