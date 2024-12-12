@@ -5,12 +5,12 @@ export enum ErrorCode {
     UNAUTHORIZED = 1004, // Explicitly set the error code
     Unprocessable_Entity = 2001,
     MISSING_FIELDS = 1005,
-    Internal_Exception=3001,
-
-
-    
-
+    Internal_Exception = 3001,
+    // Add these user-related error codes
+    USER_NOT_FOUND = 1006,
+    USER_ALREADY_EXISTS = 1007,
 }
+
 
 export class HttpException extends Error {
     message: string;
