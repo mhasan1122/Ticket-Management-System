@@ -36,6 +36,27 @@ const loginSchema = z.object({
     .min(1, 'Password is required'),
 });
 
+const busSchema = z.object({
+  name: z.string().min(1, 'Bus name is required'),
+  source: z.string().min(1, 'Source is required'),
+  destination: z.string().min(1, 'Destination is required'),
+  departure_time: z.string().min(1, 'Departure time is required'),
+  arrival_time: z.string().min(1, 'Arrival time is required'),
+});
 
+const ticketCreateSchema = z.object({
+  busId: z.string().min(1, { message: "Bus ID is required" }),
+  price: z.number().positive({ message: "Price must be a positive number" }),
+  time_slot: z.string().min(1, { message: "Time slot is required" }),
+  seats_available: z.number().int().positive({ message: "Seats available must be a positive integer" }),
+  date: z.string().min(1, { message: "Date is required" }),
+});
 
-export {signupSchema,loginSchema};
+const ticketUpdateSchema = z.object({
+  price: z.number().positive({ message: "Price must be a positive number" }).optional(),
+  time_slot: z.string().min(1, { message: "Time slot is required" }).optional(),
+  seats_available: z.number().int().positive({ message: "Seats available must be a positive integer" }).optional(),
+  date: z.string().min(1, { message: "Date is required" }).optional(),
+});
+
+export {signupSchema,loginSchema,busSchema,ticketCreateSchema,ticketUpdateSchema};

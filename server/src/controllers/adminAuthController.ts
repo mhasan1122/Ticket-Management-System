@@ -7,12 +7,13 @@ import bcrypt from "bcryptjs";
 import AdminModel from "../models/admin"; // Assuming you have a Mongoose model for Admin
 import  tokenBlacklist from "../middleware/blacklistToken";
 
+
 import jwt from 'jsonwebtoken';
 const JWT_SECRET = process.env.JWT_SECRET_KEY || "12sawegg23grr434"; // Fallback to a hardcoded secret if not in env
 
 
 export const createAdmin = async (req: Request, res: Response, next: NextFunction): Promise<any | Response> => {
-  console.log(req.body)
+  
     // Zod validation
     const result = signupSchema.safeParse(req.body);
     if (!result.success) {
@@ -99,8 +100,7 @@ export const login = async (req: Request, res: Response, next: NextFunction): Pr
 
 
 export const me = async (req: Request, res: Response) => {
-  try {
-    console.log(req.headers);
+ 
 
     const authHeader = req.headers.authorization;
     if (!authHeader) {
@@ -113,12 +113,9 @@ export const me = async (req: Request, res: Response) => {
     }
 
     let payload;
-    try {
+    
       payload = jwt.verify(token, JWT_SECRET) as jwt.JwtPayload;
-    } catch (err) {
-      console.error("Token verification failed", err);
-      return res.status(401).json({ message: "Invalid or expired token" });
-    }
+    
 
     if (!payload || !payload.id) {
       return res.status(401).json({ message: "Invalid token payload" });
@@ -132,14 +129,11 @@ export const me = async (req: Request, res: Response) => {
 
     console.log(admin);
     res.json({ message: "Success", admin }); // Return only desired fields
-  } catch (error) {
-    console.error("An error occurred", error);
-    res.status(500).json({ message: "Internal server error" });
-  }
+  
 };
 
 export const logout = async (req: Request, res: Response): Promise<Response> => {
-  try {
+ 
     const authHeader = req.headers.authorization;
 
     if (!authHeader) {
@@ -155,8 +149,5 @@ export const logout = async (req: Request, res: Response): Promise<Response> => 
     tokenBlacklist.add(token);
 
     return res.status(200).json({ message: "Logout successful" });
-  } catch (error) {
-    console.error("An error occurred during logout", error);
-    return res.status(500).json({ message: "Internal server error" });
-  }
+  
 };

@@ -36,5 +36,14 @@ const userLoginSchema = z.object({
   password: z.string()
     .min(1, 'Password is required'),
 });
-
-export { userSignupSchema, userLoginSchema };
+const getTicketsSchema = z.object({
+  busId: z.string(), 
+  date: z.string()
+});
+const purchaseTicketSchema = z.object({
+  userId:z.string(), 
+  busId: z.string(), 
+  time_slot: z.string(),
+  seats_requested: z.number(),
+});
+export { userSignupSchema, userLoginSchema,getTicketsSchema ,purchaseTicketSchema};

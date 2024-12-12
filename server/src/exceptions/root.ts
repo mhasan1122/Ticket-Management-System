@@ -9,6 +9,10 @@ export enum ErrorCode {
     // Add these user-related error codes
     USER_NOT_FOUND = 1006,
     USER_ALREADY_EXISTS = 1007,
+    BUS_NOT_FOUND = 1008,
+    TICKET_NOT_FOUND=1009,
+    UNKNOWN_ERROR,
+    
 }
 
 
